@@ -55,13 +55,13 @@ extension TaskProtocol {
 		} catch {
 			if let parentTask = self.runner?.parentTask {
 				if parentTask.runner?.group != nil {
-					self.error = (error as? Self.ErrorType) ?? Self.ErrorType.init(code: -1, description: "系统错误", userInfo: nil)
+					self.error = (error as? Self.ErrorType) ?? Self.ErrorType.init(code: -1, description: error.localizedDescription, userInfo: nil)
 				} else {
 					throw error
 				}
 				
 			} else {
-				self.error = (error as? Self.ErrorType) ?? Self.ErrorType.init(code: -1, description: "系统错误", userInfo: nil)
+				self.error = (error as? Self.ErrorType) ?? Self.ErrorType.init(code: -1, description: error.localizedDescription, userInfo: nil)
 			}
 		}
 	}
