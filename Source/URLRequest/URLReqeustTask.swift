@@ -66,7 +66,7 @@ public class URLRequestTask: Task<URLRequestTask.Parameters, URLRequestTask.Resu
 				let boundary = "D3JKIOU8743NMNFQWERTYUIO12345678BNM"
 				urlRequest.httpBody = formData.mutipartFormData(boundary)
 				urlRequest.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-				urlRequest.setValue(String(formData.count), forHTTPHeaderField: "Content-Length")
+				urlRequest.setValue(String(urlRequest.httpBody!.count), forHTTPHeaderField: "Content-Length")
 			case let .custom(body, contentType)?:
 				urlRequest.httpBody = body
 				urlRequest.setValue(contentType, forHTTPHeaderField: "Content-Type")
