@@ -33,8 +33,7 @@ class DetailViewController: UIViewController, TaskResponder {
 	
 	func requestSimulation() {
 		loadingIndicator.startAnimating()
-		UserInfoTask.asyncExecute(
-		UserInfoTask.Parameters(postParameters: UserInfoTask.Parameters.PostParameters(token: "testToken"))) { [weak self] (task) in
+		UserInfoTask.asyncExecute(UserInfoTask.Parameters(postParameters: UserInfoTask.Parameters.PostParameters(token: "testToken"))) { [weak self] (task) in
 			guard let strongSelf = self else {
 				return
 			}
