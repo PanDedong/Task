@@ -61,7 +61,7 @@ public class URLRequestTask: Task<URLRequestTask.Parameters, URLRequestTask.Resu
 			
 			switch body {
 			case let .keyValue(pairs)?:
-				urlRequest.httpBody = pairs.URLEncode().data(using: String.Encoding.utf8)
+				urlRequest.httpBody = pairs.URLEncode().data(using: .utf8)
 			case let .multipart(formData)?:
 				let boundary = "D3JKIOU8743NMNFQWERTYUIO12345678BNM"
 				urlRequest.httpBody = formData.mutipartFormData(boundary)
@@ -100,7 +100,7 @@ public class URLRequestTask: Task<URLRequestTask.Parameters, URLRequestTask.Resu
 	required init(_ parameters: Parameters) {
 		super.init(parameters)
 		urlRequest = parameters.buildRequest()
-		urlRequest?.cachePolicy = URLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData
+		urlRequest?.cachePolicy = .reloadIgnoringLocalAndRemoteCacheData
 		urlRequest?.timeoutInterval = 18
 	}
 	
@@ -115,7 +115,7 @@ public class URLRequestTask: Task<URLRequestTask.Parameters, URLRequestTask.Resu
 			semaphore.signal()
 		}
 		urlSessionTask?.resume()
-		 let _ = semaphore.wait(timeout: DispatchTime.distantFuture)
+		 let _ = semaphore.wait(timeout: .distantFuture)
 		
 		#if DEBUG
 		print("""
